@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalculateInterestDemo.Interfaceclass;
+using CalculateInterestDemo;
 
 namespace CalculateInterestDemo
 {
@@ -14,20 +14,20 @@ Created By Alam
     public class SimpleInterest: IInterestCalculator
     {
         public double amount;
-        public float rateOfInteresrt;
+        public float rateOfInterest;
         public int years;
-        public SimpleInterest(double amount, float rateOfInteresrt, int years)
+        public SimpleInterest(Dictionary<string, double> SiDictionary)
         {
-            this.amount = amount;
-            this.rateOfInteresrt = rateOfInteresrt;
-            this.years = years;
+            this.amount = SiDictionary["amount"];
+            this.rateOfInterest = (float)( SiDictionary ["rateOfInterest"]);
+            this.years = Convert.ToInt32( SiDictionary["years"]);
         }
 
         public  double Interest()
         {
             double result;
             // Formula used to calculate interest
-            result = amount * rateOfInteresrt * years;
+            result = amount * rateOfInterest * years;
             
             return result; 
         }

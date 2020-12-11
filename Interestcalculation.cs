@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalculateInterestDemo.Interfaceclass;
 using CalculateInterestDemo;
 
 namespace CalculateInterestDemo
@@ -14,6 +13,7 @@ Created By Alam
 */
     class Interestcalculation
     {
+       
         static void Main(string[] args)
         {
             Console.WriteLine("Choose which Intrest to Calculate");
@@ -27,19 +27,22 @@ Created By Alam
             if (selection == 1)
             {
                 int years;
-                float rateOfIntrest;
+                float rateOfInterest;
                 double amount;
 
                 Console.WriteLine("Enter principal Amount:");
                 amount = double.Parse(Console.ReadLine());
 
                 Console.Write("Enter the rate of interest : ");
-                rateOfIntrest = float.Parse(Console.ReadLine()) / 100;
+                rateOfInterest = float.Parse(Console.ReadLine()) / 100;
 
                 Console.Write("Enter the total number of years : ");
                 years = int.Parse(Console.ReadLine());
-
-                IInterestCalculator SimpleIntrest = FactoryclassforInterest.getInetrestCalculation(amount,rateOfIntrest,years);
+                Dictionary<string, double> Valuespair = new Dictionary<string, double>();
+                Valuespair.Add("amount", amount);
+                Valuespair.Add("years", years);
+                Valuespair.Add("rateOfInterest", rateOfInterest);
+                IInterestCalculator SimpleIntrest = FactoryclassforInterest.GetInetrestCalculation(Valuespair, InterestCalculation.SimpleInterestCalculation);
                 var Result = SimpleIntrest.Interest();
                 Console.Write("Simple Intrest is " + Result);
             }
@@ -48,7 +51,7 @@ Created By Alam
                 double amount; 
                 float interest;
                 int years;
-                int annualCompound;
+                int annualfrequency;
                 Console.WriteLine("Enter principal Amount:");
                 amount = double.Parse(Console.ReadLine());
 
@@ -59,9 +62,13 @@ Created By Alam
                 years = int.Parse(Console.ReadLine());
 
                 Console.Write("Compounding frequency quarterly or monthly : ");
-                annualCompound = int.Parse(Console.ReadLine());
-
-                IInterestCalculator CalculateCi = FactoryclassforInterest.getInetrestCalculation(amount,interest,years,annualCompound);
+                annualfrequency = int.Parse(Console.ReadLine());
+                Dictionary<string, double> Valuespair = new Dictionary<string, double>();
+                Valuespair.Add("amount", amount);
+                Valuespair.Add("years", years);
+                Valuespair.Add("rateOfIntrest", interest);
+                Valuespair.Add("annualfrequency",annualfrequency);
+                IInterestCalculator CalculateCi = FactoryclassforInterest.GetInetrestCalculation(Valuespair,InterestCalculation.CompoundInteresCalculation);
                 var Result = CalculateCi.Interest();
                 Console.Write("After " + years + " years there will be a " + Result + " in the Account");
 

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CalculateInterestDemo.Interfaceclass;
+using CalculateInterestDemo;
+
 
 namespace CalculateInterestDemo
 {
@@ -17,12 +18,13 @@ Created By Alam
         int years;
         float interest;
         int annualfrequency;
-        public CompoundInterest(double amount,  float interest, int years, int annualfrequency)
+        
+        public CompoundInterest(Dictionary<string, double> CiDictionary)
         {
-            this.amount = amount;
-            this.years = years;
-            this.interest = interest;
-            this.annualfrequency = annualfrequency;
+            this.amount = ( CiDictionary["amount"]);
+            this.years = Convert.ToInt32( CiDictionary["years"]);
+            this.interest = (float)(CiDictionary["rateOfIntrest"]);
+            this.annualfrequency = Convert.ToInt32( CiDictionary["annualfrequency"]);
         }
 
         public double Interest()
